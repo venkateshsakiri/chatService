@@ -1,0 +1,179 @@
+<!-- <div class="main-container">
+    <div class="user-header">
+        {{userInfo}}
+    </div>
+    <mat-progress-bar *ngIf="isProgress" mode="indeterminate"></mat-progress-bar>
+    <div class="message-container">
+        <div class="message-body" *ngFor="let user of allMessages">
+            <div class="message-user" [ngClass]="(commonService?.userInfo?.email === user?.senderEmail)? 'right-user-info' : 'left-user-info'">
+                <span class="flex-grow time">05:20 pm</span>
+                <span class="flex-grow message-user-name">{{user.senderName}}</span>
+                <span class="flex-grow message-user-image" [ngClass]="(commonService?.userInfo?.email === user?.senderEmail)? 'right-round' : 'left-round'">{{user.senderName[0]}}</span>
+            </div>
+            <div class="message-text" [ngClass]="(commonService?.userInfo?.email === user?.senderEmail)? 'float-right' : 'float-left'">
+               {{user?.replymessage}}
+            </div>
+        </div>
+    </div>
+    <div class="message-input-container">
+        <input type="text" [(ngModel)]="messageContent" class="input-box"  [disabled]="isProgress" (keyup.enter)="sendMessage()" >
+        <button mat-raised-button color="primary" type="submit" [disabled]="!messageContent" (click)="sendMessage()">Send</button>
+    </div>
+</div> -->
+
+<body>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+
+      <!-- <div class="col-md-0 col-xl-1 order-lg-1"></div> -->
+      <!-- =======================left Body================================ -->
+      <div class="col-md-4 col-xl-3 chat order-last order-lg-2">
+        <div class="card mb-sm-3 mb-md-0 contacts_card">
+          <div class="card-header">
+            <h1 class="chat-list-title">All User</h1>
+          </div>
+          <div class="card-body contacts_body ">
+            <!-- *ngFor="let presentation of alluser" -->
+            <ul class="contacts chatList" *ngFor="let presentation of userList" >
+                <!-- *ngIf="presentation.userName != check" -->
+              <li  *ngIf="(commonService?.userInfo?.email !== presentation.email)" (click)="goToChat(presentation)">
+                <div class="d-flex bd-highlight">
+                  <div class="img_cont" (click)="goToChat(presentation)">
+                    <div class="rounded-circle user_img text_inside_circle">
+                      {{ presentation.name.substring(0,1)}}
+
+                    </div>
+
+                  </div>
+                  <!-- (click)="goToChat(presentation.userName)" -->
+                  <div class="user_info" (click)="goToChat(presentation)">
+                    {{presentation.name}}
+                    <!-- <div style="margin-top: 1rem;">
+                    -</div> -->
+                    <br>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-0 col-xl-1 order-lg-3"></div> -->
+
+      <!-- =============================Middle Body============================= -->
+      <div class="col-md-8 col-xl-6 chat order-md-1 order-lg-4">
+        <div class="card">
+
+
+          <div class="card-header msg_head">
+            <div class="d-flex bd-highlight">
+              <div class="img_cont">
+                <div class="rounded-circle user_img text_inside_circle1" >
+                 {{currentChatUser?.name.substring(0,1)}}</div>
+                <!-- <div class="rounded-circle user_img text_inside_circle1">
+                  -</div> -->
+              </div>
+              <div class="user_info">
+                <span >{{currentChatUser?.name}}</span>
+                <!-- <span>-</span> -->
+                <p>Message</p>
+              </div>
+              <div class="video_cam">
+              </div>
+            </div>
+            <span id="action_menu_btn">
+              <!-- <i class="fa fa-house" style="margin-right: 1.5rem;" (click)="routeHome()"></i> -->
+              <!-- <i class="fa fa-xmark" style="margin-right: 0.5rem;" (click)="routeX()"></i> -->
+              <!-- <span style="margin-right: 0.5rem;" (click)="routeX()">Logout</span> -->
+            </span>
+          </div>
+          <div class="card-body msg_card_body" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <mat-progress-bar *ngIf="isProgress" mode="indeterminate"></mat-progress-bar>
+            <!-- *ngFor="let msg of messageList" -->
+            <div *ngFor="let msg of allMessages">
+
+              <div class="d-flex justify-content-end mb-4" *ngIf="(msg?.senderEmail === commonService?.userInfo?.email)">
+                <div class="msg_cotainer_send">
+                  {{msg?.replymessage}}
+
+                  <span class="msg_time_send">{{updateTimeAgoObj(msg?.time)}}</span>
+                </div>
+                <div class="img_cont_msg">
+                  <span
+                    class="rounded-circle user_img_msg text_inside_circle2">{{msg?.senderName.substring(0,1)}}</span>
+                </div>
+              </div>
+
+
+              <div class="d-flex justify-content-start mb-4" *ngIf="(msg?.senderEmail !== commonService?.userInfo?.email)">
+                <div class="img_cont_msg">
+                  <span
+                    class="rounded-circle user_img_msg text_inside_circle3">{{msg?.senderName.substring(0,1)}}</span>
+                </div>
+                <div class="msg_cotainer">
+                    {{msg?.replymessage}}
+                  <span class="msg_time">{{updateTimeAgoObj(msg?.time)}}</span>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="card-footer">
+              <div class="input-group">
+                <div class="input-group-append">
+                  <span class="input-group-text attach_btn"></span>
+                </div>
+                <textarea name="" class="form-control type_msg" [(ngModel)]="messageContent"  [disabled]="isProgress" (keyup.enter)="sendMessage()" placeholder="Type your message..."
+                  ></textarea>
+                <div class="input-group-append">
+                  <button mat-raised-button class="input-group-text send_btn" [disabled]="!messageContent" (click)="sendMessage()">
+                    <i class="fa fa-location-arrow"></i> </button>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ========================Right Body========================= -->
+      <div class="col-md-4 col-xl-3 chat order-md-2 order-lg-5">
+        <div class="card mb-sm-3 mb-md-0 contacts_card">
+          <div class="card-header">
+            <h1 class="chat-list-title">Recent Chat List</h1>
+          </div>
+          <div class="card-body contacts_body ">
+            <ul class="contacts chatList" *ngFor="let chats of recentChatList">
+              <li>
+                <!-- (click)="loadChatByEmail(chats.secondUserName, chats.firstUserName)" -->
+                <div class="d-flex bd-highlight" (click)="goToChat(chats)">
+                  <div class="img_cont">
+                    <div class="rounded-circle user_img text_inside_circle">
+                      {{chats.name.substring(0,1)}}
+                    </div>
+                    <!-- <div class="rounded-circle user_img text_inside_circle" *ngIf="chats.secondUserName==senderCheck">
+                      {{chats.firstUserName.substring(0,1)}}
+                    </div> -->
+
+                  </div>
+                  <div class="user_info">
+                    <div  style="margin-top: 1rem;">
+                      {{chats.name}}</div>
+                    <!-- <div *ngIf="chats.secondUserName==senderCheck" style="margin-top: 1rem;">
+                      {{chats.firstUserName}}</div> -->
+                    <br>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-0 col-xl-1 order-lg-6"></div> -->
+    </div>
+  </div>
+</body>
