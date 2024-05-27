@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/app/service/common/common.service';
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public commonService:CommonService,public adminService:AdminService) {
+    this.commonService.currentPage = 'ecom-dashboard';
+  }
 
   ngOnInit(): void {
   }

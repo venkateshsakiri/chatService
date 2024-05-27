@@ -16,6 +16,8 @@ export class PostProductComponent implements OnInit {
   public imgPreview:string | ArrayBuffer | null;
   public selectedFile:File | null;
   public isLoadingComplete:boolean = false;
+  public base64Format:any;
+  public categoryName:any;
   constructor(public adminService:AdminService, public snackBar:MatSnackBar, public router:Router) { }
 
   ngOnInit(): void {
@@ -35,18 +37,32 @@ export class PostProductComponent implements OnInit {
 
     })
   }
+  public getCategoryName(opt:any){
+    this.categoryName = opt.name;
+  }
   addProduct(){
     if(this.productForm.valid){
       this.isLoadingComplete = true;
-      console.log(typeof(this.productForm.controls['price'].value));
+      let id = this.productForm.controls['categoryId'].value+'';
+      this.productForm.controls['categoryId'].setValue(id);
+      console.log(typeof(this.productForm.controls['categoryId'].value));
       console.log(this.productForm.value);
       const formData: FormData = new FormData();
-      formData.append('img',this.selectedFile);
+      formData.append('img', this.selectedFile as Blob);
       formData.append('categoryId',this.productForm.controls['categoryId'].value);
       formData.append('name',this.productForm.controls['name'].value);
-      formData.append('price',this.productForm.controls['price'].value);
+      formData.append('amount',this.productForm.controls['price'].value);
       formData.append('description',this.productForm.controls['description'].value);
-      this.adminService.addProduct(formData).subscribe((res:any)=>{
+      let reqObj = {
+        name: this.productForm.controls['name'].value,
+        amount:this.productForm.controls['price'].value,
+        description:this.productForm.controls['description'].value,
+        updatedUategoryId:this.productForm.controls['categoryId'].value,
+        categoryName:this.categoryName,
+        byteImg:this.base64Format
+      }
+
+      this.adminService.addProduct(reqObj).subscribe((res:any)=>{
         this.isLoadingComplete = false;
         if(res?.id != null){
           this.snackBar.open('Product posted successfully!', 'Close',{duration:5000});
@@ -76,6 +92,9 @@ export class PostProductComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = () =>{
       this.imgPreview = reader.result;
+      const base64String = (reader.result as string).replace(/^data:image\/[a-z]+;base64,/, '');
+      this.base64Format = base64String;
+      console.log(this.base64Format)
     }
     reader.readAsDataURL(this.selectedFile);
   }

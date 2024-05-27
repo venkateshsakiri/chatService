@@ -20,7 +20,17 @@ export class LoginComponent implements OnInit {
        password:new FormControl('123456',Validators.required)
      })
    }
-
+   configs: any = {
+    'rows': 'Type',
+    'columns': 'book'
+  };
+  source= [
+    {'Type': 'Deba', 'book': 'Angular'},
+    {'Type': 'Deba', 'book': 'Physics'},
+    {'Type': 'Deba', 'book': 'Physics'},
+    {'Type': 'Aditya', 'book': 'Angular'},
+    {'Type': 'Aditya', 'book': 'Angular'}
+  ];
   ngOnInit(): void {
   }
 
@@ -31,20 +41,14 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.isLoader = true;
     this.authService.login(this.loginForm.value).subscribe((response:any)=>{
-      this.isLoader = true;
+      this.isLoader = false;
       this.snackBar.open(response, 'Close',{duration:5000});
       let res = JSON.parse(response);
       if(res){
         if(res?.status == 'SUCCESS'){
           this.commonService.userInfo = res?.user;
           this.snackBar.open(res?.message, 'Close',{duration:5000});
-          // if(this.commonService.isAdmin()){
-          //   this.router.navigate(['/admin/dashboard']);
-          // }else if(this.commonService.isCustomerLogin()){
-          //   this.router.navigate(['/customer/dashboard']);
-          // }
-          this.router.navigate(['/chat']);
-          // this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard']);
         }else{
           this.snackBar.open(res, 'Close',{duration:5000});
         }
@@ -53,9 +57,9 @@ export class LoginComponent implements OnInit {
 
 
     },(err:any)=>{
-      this.isLoader = true;
+      this.isLoader = false;
       console.log(err)
-      this.snackBar.open('Sign up failed. Please try again.', 'Close',{duration:5000, panelClass:'error-snackbar'});
+      this.snackBar.open('Login failed. Please try again.', 'Close',{duration:5000, panelClass:'error-snackbar'});
     })
   }
 }

@@ -1,17 +1,26 @@
 <div *ngIf="!isAdminLogin && !isCustomerLogin">
   <mat-toolbar color="primary" class="navbar">
-    <span class="navbar-brand" *ngIf="!commonService?.userInfo">E-commerce</span>
-    <span class="navbar-brand" *ngIf="commonService?.userInfo">Chat</span>
+    <button mat-icon-button class="example-icon" *ngIf="commonService?.userInfo" (click)="drawer.toggle()"
+      aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="navbar-brand">Sakiri</span>
+    <!-- <span class="navbar-brand" *ngIf="commonService?.userInfo">Chat</span> -->
     <span class="spacer"></span>
-    <button mat-button routerLink="/order" *ngIf="!commonService?.userInfo" routerLinkActive="active">Track Order</button>
+    <!-- <button mat-button routerLink="/order" *ngIf="!commonService?.userInfo" routerLinkActive="active">Track Order</button> -->
     <button mat-button routerLink="/signup" *ngIf="!commonService?.userInfo" routerLinkActive="active">Register</button>
     <button mat-button routerLink="/login" *ngIf="!commonService?.userInfo" routerLinkActive="active">Login</button>
-    <button mat-button *ngIf="commonService?.userInfo" routerLinkActive="active" (click)="logOut()">Log Out</button>
+    <button mat-button *ngIf="commonService?.userInfo" routerLinkActive="active"
+      (click)="logOut();drawer.toggle(false)">Log Out</button>
   </mat-toolbar>
 </div>
-<div *ngIf="isAdminLogin">
+<div *ngIf="isAdminLogin && !isChatApplication">
   <mat-toolbar color="primary" class="navbar">
-    <span class="navbar-brand">E-commerce</span>
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()"
+      aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="navbar-brand" routerLink="/dashboard">E-commerce</span>
     <span class="spacer"></span>
     <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
     <button mat-button routerLink="/admin/analytics" routerLinkActive="active">Analytics</button>
@@ -20,20 +29,67 @@
     <button mat-button routerLink="/admin/order" routerLinkActive="active">Orders</button>
     <button mat-button routerLink="/admin/post-coupon" routerLinkActive="active">Post Coupon</button>
     <button mat-button routerLink="/admin/coupon" routerLinkActive="active">Coupons</button>
-    <button mat-button *ngIf="commonService?.userInfo" routerLinkActive="active" (click)="logOut()">Log Out</button>
+    <button mat-button *ngIf="commonService?.userInfo" routerLinkActive="active"
+      (click)="logOut();drawer.toggle(false)">Log Out</button>
   </mat-toolbar>
 </div>
-<div *ngIf="isCustomerLogin">
+<div *ngIf="isCustomerLogin && !isChatApplication">
   <mat-toolbar color="primary" class="navbar">
-    <span class="navbar-brand">E-commerce</span>
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()"
+      aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="navbar-brand" routerLink="/dashboard">E-commerce</span>
     <span class="spacer"></span>
-    <button mat-button routerLink="/customer/dashboard"  routerLinkActive="active">Dashboard</button>
-    <button mat-button routerLink="/customer/cart"  routerLinkActive="active">Cart</button>
-    <button mat-button routerLink="/customer/my_orders"  routerLinkActive="active">Orders</button>
-    <button mat-button routerLink="/customer/wishlist"  routerLinkActive="active">Wishlist</button>
-    <button mat-button routerLink="/customer/profile"  routerLinkActive="active">Profile</button>
-    <button mat-button *ngIf="commonService?.userInfo" routerLinkActive="active" (click)="logOut()">Log Out</button>
+    <button mat-button routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</button>
+    <button mat-button routerLink="/customer/cart" routerLinkActive="active">Cart</button>
+    <button mat-button routerLink="/customer/my_orders" routerLinkActive="active">Orders</button>
+    <button mat-button routerLink="/customer/wishlist" routerLinkActive="active">Wishlist</button>
+    <button mat-button (click)="profile = !profile" cdkOverlayOrigin #trigger="cdkOverlayOrigin">Profile</button>
+    <button mat-button *ngIf="commonService?.userInfo" routerLinkActive="active"
+      (click)="logOut();drawer.toggle(false)">Log Out</button>
   </mat-toolbar>
 </div>
-<router-outlet></router-outlet>
+<div *ngIf="isChatApplication">
+  <mat-toolbar color="primary" class="navbar">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()"
+      aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="navbar-brand" routerLink="/dashboard">Chat</span>
+    <span class="spacer"></span>
+    <button mat-button (click)="profile = !profile" cdkOverlayOrigin #trigger="cdkOverlayOrigin" routerLinkActive="active">Profile</button>
+    <button mat-button *ngIf="commonService?.userInfo" routerLinkActive="active"
+      (click)="logOut();drawer.toggle(false)">Log Out</button>
+  </mat-toolbar>
+</div>
 
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-list role="list">
+      <mat-list-item role="listitem" [class.highlight]="commonService.currentPage === 'ecom-dashboard'"
+        (click)="goToProject('ecom');drawer.toggle(false)" class="mat-list-proects"><span
+          class="material-symbols-outlined project-icons">
+          store
+        </span>E-commerce</mat-list-item>
+      <mat-list-item role="listitem" [class.highlight]="commonService.currentPage === 'chat'"
+        (click)="goToProject('chat');drawer.toggle(false)" class="mat-list-proects"><span
+          class="material-symbols-outlined project-icons">
+          chat
+        </span>Chat</mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+
+</mat-drawer-container>
+
+
+<!-- <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="profile">
+  <div class="profile-popup" (click)="profile = !profile">
+    <div class="cBoth pTop20"></div>
+
+  </div>
+</ng-template> -->

@@ -1,1 +1,8 @@
-<p>customer-dashboard works!</p>
+<mat-grid-list cols="6" rowHeight="2:2">
+    <mat-grid-tile *ngFor="let category of categoryList">
+        <img *ngIf="category.imagePath" src="{{category.imagePath}}" alt="no_image" loading="lazy">
+        <span class="category-name">{{category?.name}}</span>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <app-ajax-loader *ngIf="isCompleteLoading"></app-ajax-loader>

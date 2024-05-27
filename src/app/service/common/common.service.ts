@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class CommonService {
 
   public userInfo;
+  public currentPage='';
   public allUser:any;
 
   constructor() { }

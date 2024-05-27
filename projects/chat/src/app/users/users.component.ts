@@ -26,6 +26,7 @@ export class UsersComponent implements OnInit {
   ) {
     this.userInfo = this.commonService.userInfo;
     this.userEmail = '';
+    this.commonService.currentPage = 'chat';
   }
 
   ngOnInit(): void {
@@ -52,6 +53,7 @@ export class UsersComponent implements OnInit {
     this.isLoader = isLoading ? false : true;
     this.chatService.getAllRecentChatList().subscribe(
       (res: any) => {
+        console.log(res)
         let uniqueEmails = new Set();
         res.forEach((message) => {
           uniqueEmails.add(message.senderEmail);

@@ -20,10 +20,10 @@ export class AdminService {
   addProduct(product:any){
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
-    return this.http.post(BASIC_URL+'api/admin/product',product,{ headers: headers });
+    return this.http.post(BASIC_URL+'api/admin/product',product);
   }
 
-  getProducts(product:any){
+  getProducts(){
     return this.http.get(BASIC_URL+'api/admin/products');
   }
 }

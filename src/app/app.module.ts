@@ -20,6 +20,10 @@ import { AjaxLoaderComponent } from './ajax-loader/ajax-loader.component';
 import { SharedModule } from './shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { AngularPivotTableModule } from 'angular-pivot-table';
 
 
 @NgModule({
@@ -46,8 +50,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     SharedModule,
-    MatGridListModule
-
+    MatGridListModule,
+    MatSidenavModule,
+    MatListModule,
+    OverlayModule,
+    AngularPivotTableModule
 
 
 

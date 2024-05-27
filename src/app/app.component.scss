@@ -1,7 +1,7 @@
 .navbar{
     height: 60px;
     background-color: rgb(47, 68, 126);
-    button{
+    button:not(.example-icon){
         background-color: transparent;
         color: #fff;
         font-size: 14px;
@@ -9,6 +9,14 @@
         margin-left: 8px;
     }
 }
+.highlight:not(.mat-list-proects:hover){
+    background-color: rgb(47, 68, 126);
+    color: #fff;
+}
+.mat-list-base{
+    padding-top: 0px;
+}
+
 .spacer{
     flex: 1 ;
 }
@@ -30,4 +38,48 @@ button.active{
 }
 .custom-toolbar{
     background-color: #ff0000;
+}
+.example-container {
+    // width: 500px;
+    // height: 300px;
+    height: calc(100% - 60px);
+    background-color: #fff;
+}
+
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .example-sidenav {
+    // padding: 20px;
+    width: 160px;
+  }
+  .mat-list-proects{
+    cursor: pointer;
+    padding: 20px;
+  }
+  .example-icon{
+    mix-blend-mode: -10px;
+  }
+  .mat-list-proects:hover{
+    background-color: rgb(221, 245, 237);
+  }
+  .project-icons{
+    margin-right: 5px;
+  }
+  .profile-popup{
+    width: auto;
+    height: auto;
+    padding: 10px 10px 20px 10px;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    background-color: #ffffff;
+    font-size: 1em;
+    color: #565656;
+    text-decoration: none;
+    line-height: 18px;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.1);
 }
