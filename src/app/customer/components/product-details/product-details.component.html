@@ -13,7 +13,7 @@
     </div>
     <mat-card-actions class="action-btns">
       <span>
-        <button mat-button><mat-icon aria-hidden="false" aria-label="Example home icon">add_shopping_cart</mat-icon></button>
+        <button mat-button (click)="addToCart(product)"><mat-icon aria-hidden="false" aria-label="Example home icon">add_shopping_cart</mat-icon></button>
         <button mat-raised-button color="primary">Buy</button>
       </span>
       <mat-icon aria-hidden="false" aria-label="Example home icon" class="favorite-icon">favorite</mat-icon>

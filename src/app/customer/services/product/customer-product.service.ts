@@ -29,4 +29,15 @@ export class CustomerProductService {
     });
     return this.http.get(BASE_URL+`api/admin/products/${category}`,{headers:headers});
   }
+
+  public productAddToCart(product:any){
+    return this.http.post(BASE_URL+`api/customer/addcart`,product);
+  }
+
+  public getAllCartItems(userName:string){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(BASE_URL+`api/customer/cart-items/${userName}`,{headers:headers});
+  }
 }
