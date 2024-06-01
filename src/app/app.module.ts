@@ -23,7 +23,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { AngularPivotTableModule } from 'angular-pivot-table';
 
 
 @NgModule({
@@ -53,8 +52,7 @@ import { AngularPivotTableModule } from 'angular-pivot-table';
     MatGridListModule,
     MatSidenavModule,
     MatListModule,
-    OverlayModule,
-    AngularPivotTableModule
+    OverlayModule
 
 
 

@@ -20,17 +20,7 @@ export class LoginComponent implements OnInit {
        password:new FormControl('123456',Validators.required)
      })
    }
-   configs: any = {
-    'rows': 'Type',
-    'columns': 'book'
-  };
-  source= [
-    {'Type': 'Deba', 'book': 'Angular'},
-    {'Type': 'Deba', 'book': 'Physics'},
-    {'Type': 'Deba', 'book': 'Physics'},
-    {'Type': 'Aditya', 'book': 'Angular'},
-    {'Type': 'Aditya', 'book': 'Angular'}
-  ];
+
   ngOnInit(): void {
   }
 
