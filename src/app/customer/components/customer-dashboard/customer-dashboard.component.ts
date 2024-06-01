@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/service/common/common.service';
 import { CustomerProductService } from '../../services/product/customer-product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -13,7 +14,7 @@ export class CustomerDashboardComponent implements OnInit {
   public isCompleteLoading:boolean = false;
   public imagePath:any;
 
-  constructor(public commonService:CommonService,public customerProduct:CustomerProductService,public snackBar:MatSnackBar) {
+  constructor(public commonService:CommonService,public customerProduct:CustomerProductService,public snackBar:MatSnackBar,public router:Router) {
     this.commonService.currentPage = 'ecom-dashboard';
   }
 
@@ -29,6 +30,7 @@ export class CustomerDashboardComponent implements OnInit {
     this.customerProduct.getAllCategories().subscribe((res:any)=>{
       this.isCompleteLoading = false;
       this.categoryList = res;
+      this.commonService.categoryList = res;
       this.categoryList.map((element:any)=>{
         if(element?.name=== 'Home & Furniture'){
           element.imagePath = 'assets/images/furniture.jpg';
@@ -47,6 +49,10 @@ export class CustomerDashboardComponent implements OnInit {
       this.isCompleteLoading = false;
       this.snackBar.open(err?.message, 'ERROR',{duration:5000});
     })
+  }
+
+  public goToProductDetails(category:string){
+    this.router.navigate(['/customer/product-details',category]);
   }
 
 }

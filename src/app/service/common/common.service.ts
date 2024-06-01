@@ -8,6 +8,7 @@ export class CommonService {
   public userInfo;
   public currentPage='';
   public allUser:any;
+  public categoryList:any;
 
   constructor() { }
 

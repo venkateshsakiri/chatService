@@ -22,4 +22,11 @@ export class CustomerProductService {
     });
     return this.http.get(BASE_URL+'api/admin/category',{headers:headers});
   }
+
+  public getAllProductsByCategoryName(category:string){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(BASE_URL+`api/admin/products/${category}`,{headers:headers});
+  }
 }

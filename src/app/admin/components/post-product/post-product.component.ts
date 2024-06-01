@@ -23,6 +23,7 @@ export class PostProductComponent implements OnInit {
   ngOnInit(): void {
     this.productForm = new FormGroup({
       name: new FormControl('',Validators.required),
+      brandName: new FormControl('',Validators.required),
       price: new FormControl('',Validators.required),
       description: new FormControl('',Validators.required),
       categoryId: new FormControl('',Validators.required),
@@ -45,16 +46,10 @@ export class PostProductComponent implements OnInit {
       this.isLoadingComplete = true;
       let id = this.productForm.controls['categoryId'].value+'';
       this.productForm.controls['categoryId'].setValue(id);
-      console.log(typeof(this.productForm.controls['categoryId'].value));
-      console.log(this.productForm.value);
-      const formData: FormData = new FormData();
-      formData.append('img', this.selectedFile as Blob);
-      formData.append('categoryId',this.productForm.controls['categoryId'].value);
-      formData.append('name',this.productForm.controls['name'].value);
-      formData.append('amount',this.productForm.controls['price'].value);
-      formData.append('description',this.productForm.controls['description'].value);
+
       let reqObj = {
         name: this.productForm.controls['name'].value,
+        brandName: this.productForm.controls['brandName'].value,
         amount:this.productForm.controls['price'].value,
         description:this.productForm.controls['description'].value,
         updatedUategoryId:this.productForm.controls['categoryId'].value,

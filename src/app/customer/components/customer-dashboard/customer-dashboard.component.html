@@ -1,5 +1,5 @@
 <mat-grid-list cols="6" rowHeight="2:2">
-    <mat-grid-tile *ngFor="let category of categoryList">
+    <mat-grid-tile *ngFor="let category of categoryList" (click)="goToProductDetails(category?.name)">
         <img *ngIf="category.imagePath" src="{{category.imagePath}}" alt="no_image" loading="lazy">
         <span class="category-name">{{category?.name}}</span>
     </mat-grid-tile>

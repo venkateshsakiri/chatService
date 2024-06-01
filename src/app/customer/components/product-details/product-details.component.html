@@ -1,0 +1,23 @@
+<mat-card class="sticky-card">
+    <button mat-button *ngFor="let cat of categoryList; let i = index" (click)="updateCategoryProducts(cat?.name)" [class.highlight]="cat?.name===selectedCategoryName">{{cat?.name}}</button>
+</mat-card>
+<div class="main-container">
+  <mat-card class="example-card" *ngFor="let product of productList;">
+    <mat-card-content class="product-image">
+      <img [src]="product?.imageBase64" alt="...">
+    </mat-card-content>
+    <div class="product-info">
+        <span class="brand-name">{{product?.brandName? product?.brandName : '-'}}</span>
+        <span class="description" title="{{product?.description}}">{{product?.description? product?.description : '-'}}</span>
+        <span class="amount">{{product?.Amount? (product?.Amount | currency:'INR') : '-'}}</span>
+    </div>
+    <mat-card-actions class="action-btns">
+      <span>
+        <button mat-button><mat-icon aria-hidden="false" aria-label="Example home icon">add_shopping_cart</mat-icon></button>
+        <button mat-raised-button color="primary">Buy</button>
+      </span>
+      <mat-icon aria-hidden="false" aria-label="Example home icon" class="favorite-icon">favorite</mat-icon>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<app-ajax-loader *ngIf="isLoadingComplete"></app-ajax-loader>

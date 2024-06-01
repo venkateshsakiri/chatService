@@ -31,6 +31,11 @@
         <mat-error *ngIf="productForm.controls['name']?.hasError('required')">This input is required</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Brand Name</mat-label>
+        <input matInput type="text" formControlName="brandName" placeholder="Name">
+        <mat-error *ngIf="productForm.controls['brandName']?.hasError('required')">This input is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
         <mat-label>Price</mat-label>
         <input matInput type="text" formControlName="price" placeholder="Price">
         <mat-error *ngIf="productForm.controls['price']?.hasError('required')">This input is required</mat-error>
