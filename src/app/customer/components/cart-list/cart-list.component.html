@@ -1,1 +1,41 @@
-<p>cart-list works!</p>
+<div class="cart-main-container">
+  <div class="cart-left-panel">
+    <mat-card class="horizantal-line" *ngFor="let cart of cartList">
+      <div >
+        <div class="cart-list-info">
+            <span>
+                <img [src]="cart?.imageBase64" alt="...">
+            </span>
+          <div class="cart-product-info">
+            <span class="product-description" title="{{cart?.description}}">{{cart?.description? cart?.description : '-'}}</span>
+            <span class="brand-name">Seller: {{cart?.brandName? cart?.brandName : '-'}}</span>
+            <span class="amount">{{cart?.Amount? (cart?.Amount | currency:'INR') : '0'}}</span>
+          </div>
+          <div class="product-delivery-updates">
+            <span class="delivery-updates">Delivery by Sat Jun 8 | <span>Free</span></span>
+          </div>
+        </div>
+        <mat-card-actions>
+            <div class="action-items">
+                <span class="symbol minus-symbol">-</span>
+                <span class="updated-value">{{updatedQuantity}}</span>
+                <span class="symbol plus-symbol">+</span>
+                <span class="remove-btn">REMOVE</span>
+            </div>
+        </mat-card-actions>
+      </div>
+
+    </mat-card>
+  </div>
+  <div class="cart-right-panel">
+    <mat-card class="right-panel-card">
+      <mat-card-title>Price Details</mat-card-title>
+
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<app-ajax-loader *ngIf="isLoadingComplete"></app-ajax-loader>

@@ -1,0 +1,119 @@
+.cart-main-container {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 30px 50px 60px 50px;
+    min-height: calc(100vh - 60px);
+}
+.cart-left-panel {
+    width: 75%;
+    height: auto;
+    border-radius: 5px;
+}
+.cart-right-panel {
+    width: 25%;
+    height: 200px;
+    border-radius: 5px;
+}
+.cart-list-info {
+    display: flex;
+    gap: 20px;
+    img {
+        width: 230px;
+        height: 100%;
+    }
+    .cart-product-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0px 20px;
+        .product-description {
+            font-size: 16px;
+            font-family: sans-serif;
+            color: #525252;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+            max-width: 400px;
+        }
+        .brand-name {
+            font-size: 15px;
+            font-family: sans-serif;
+            color: #525252;
+        }
+        .amount {
+            font-size: 16px;
+            font-family: sans-serif;
+            color: #000;
+            font-weight: 600;
+        }
+    }
+}
+.horizantal-line {
+    border-bottom: 1px solid #f0f0f0;
+    border: 1px solid #f0f0f0;
+}
+.mat-card:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.mat-card:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.delivery-updates {
+    span {
+        color: green;
+    }
+}
+.action-items {
+    display: flex;
+    align-items: center;
+  }
+
+  .symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;   /* Adjust width as needed */
+    height: 28px;  /* Adjust height as needed */
+    border-radius: 50%;
+    // background-color: #f0f0f0;  /* Background color of the circle */
+    font-size: 20px;  /* Adjust font size as needed */
+    border:1px solid #a2a2a2;  /* Font color */
+    cursor: pointer;
+  }
+
+  .minus-symbol {
+    margin-right: 10px;
+  }
+
+  .plus-symbol {
+    margin-left: 10px;
+  }
+
+  .updated-value {
+    font-size: 18px;  /* Adjust font size as needed */
+    font-weight: bold;
+  }
+  .mat-card-actions{
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+  }
+  .remove-btn{
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #727272;
+    cursor: pointer;
+    margin-left: 50px;
+  }
+  .remove-btn:hover{
+    color: rgb(52, 127, 212);
+  }
