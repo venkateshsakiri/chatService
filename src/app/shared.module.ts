@@ -16,6 +16,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
         MatGridListModule,
         MatSidenavModule,
         MatListModule,
-        OverlayModule
+        OverlayModule,
+        MatDialogModule
     ],
     exports: [
         AjaxLoaderComponent,
@@ -55,7 +57,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
         MatGridListModule,
         MatSidenavModule,
         MatListModule,
-        OverlayModule
+        OverlayModule,
+        MatDialogModule
     ]
 })
 export class SharedModule { }

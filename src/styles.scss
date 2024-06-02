@@ -1,31 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 /* width */
 ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-  }
+  width: 4px;
+  height: 4px;
+}
 
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #fff;
-  }
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
 
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-     border-radius:30px;
-  }
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 30px;
+}
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #888;
-  }
-  .mat-grid-tile-content{
-    flex-direction: column !important;
-  }
-  .sticky-card{
-    padding: 0px !important;
-  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+.mat-grid-tile-content {
+  flex-direction: column !important;
+}
+.sticky-card {
+  padding: 0px !important;
+}
+.clear-popoup-title-center-align {
+  /* text-align: center !important; */
+  /* margin-left: 42% !important;  */
+  line-height: 29px !important;
+}
+.clear-popoup-cnt-text {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.clear-popoup-yes-btn {
+  margin-left: 10px;
+  width: 56px;
+  height: 31px;
+  border: 1px solid #1d86ff;
+  border-radius: 3px;
+  background-color: #1d86ff;
+  background-size: cover;
+  font-family: "opensans-regular";
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none solid rgb(255, 255, 255);
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+.clear-popoup-no-btn {
+  width: 56px;
+  height: 31px;
+  border: 1px solid #1d86ff;
+  border-radius: 3px;
+  background-color: #ffffff !important;
+  background-size: cover;
+  font-family: "opensans-regular";
+  font-size: 14px;
+  color: #1d86ff;
+  text-decoration: none solid rgb(29, 134, 255);
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+.fRight {
+  float: right;
+}

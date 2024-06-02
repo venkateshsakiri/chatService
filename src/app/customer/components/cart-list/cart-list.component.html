@@ -1,6 +1,6 @@
 <div class="cart-main-container">
   <div class="cart-left-panel">
-    <mat-card class="horizantal-line" *ngFor="let cart of cartList">
+    <mat-card class="horizantal-line" *ngFor="let cart of cartList;let i = index;">
       <div >
         <div class="cart-list-info">
             <span>
@@ -12,15 +12,15 @@
             <span class="amount">{{cart?.Amount? (cart?.Amount | currency:'INR') : '0'}}</span>
           </div>
           <div class="product-delivery-updates">
-            <span class="delivery-updates">Delivery by Sat Jun 8 | <span>Free</span></span>
+            <span class="delivery-updates">Delivery by {{deliveryDate | date}} | <span>Free</span></span>
           </div>
         </div>
         <mat-card-actions>
             <div class="action-items">
-                <span class="symbol minus-symbol">-</span>
-                <span class="updated-value">{{updatedQuantity}}</span>
-                <span class="symbol plus-symbol">+</span>
-                <span class="remove-btn">REMOVE</span>
+                <span class="symbol minus-symbol" (click)="decreaseItems(cart?.Amount,i)">-</span>
+                <span class="updated-value">{{cart?.updatedQuantity}}</span>
+                <span class="symbol plus-symbol" (click)="increaseItems(cart?.Amount,i)">+</span>
+                <span class="remove-btn" (click)="deleteCartItem(temp,cart)">REMOVE</span>
             </div>
         </mat-card-actions>
       </div>
@@ -30,12 +30,43 @@
   <div class="cart-right-panel">
     <mat-card class="right-panel-card">
       <mat-card-title>Price Details</mat-card-title>
-
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
+      <mat-card-content>
+        <div class="price-details">
+            <div class="field">
+                <span class="price-labels">Price ({{cartResponse?.count}} {{cartResponse?.count === '1'? 'item' : 'items'}})</span>
+                <span class="right-side-amount">{{priceOfItems? (priceOfItems | currency:'INR') : '0'}}</span>
+            </div>
+            <div class="field">
+                <span class="price-labels">Discount</span>
+                <span class="right-side-amount green">- {{discountAmount | currency:'INR'}}</span>
+            </div>
+            <div class="field">
+                <span class="price-labels">Delivery Charges</span>
+                <span class="right-side-amount green">Free</span>
+            </div>
+            <div class="field">
+                <span class="price-labels">Secured Packaging Fee</span>
+                <span class="right-side-amount">{{packingCharges | currency:'INR'}}</span>
+            </div>
+            <div class="field bold">
+                <span class="price-labels">Total Amount</span>
+                <span class="right-side-amount">{{totalAmount? (totalAmount | currency:'INR') : '0'}}</span>
+            </div>
+        </div>
+      </mat-card-content>
     </mat-card>
   </div>
 </div>
 <app-ajax-loader *ngIf="isLoadingComplete"></app-ajax-loader>
+<ng-template #temp>
+    <mat-card-title class="clear-popoup-title-center-align" translate>
+        Message
+    </mat-card-title>
+    <div mat-dialog-content>
+        <div class="clear-popoup-cnt-text" translate>Are you want to delete item?</div>
+    </div>
+    <div mat-dialog-actions class="fRight">
+        <button mat-dialog-close class="clear-popoup-no-btn" translate>No</button>
+        <button mat-dialog-close class="clear-popoup-yes-btn" (click)="deleteCart()" translate>Yes</button>
+    </div>
+</ng-template>
