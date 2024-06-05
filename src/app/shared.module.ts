@@ -17,6 +17,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         MatSidenavModule,
         MatListModule,
         OverlayModule,
-        MatDialogModule
+        MatDialogModule,
+        MatTableModule
     ],
     exports: [
         AjaxLoaderComponent,
@@ -58,7 +60,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         MatSidenavModule,
         MatListModule,
         OverlayModule,
-        MatDialogModule
+        MatDialogModule,
+        MatTableModule
     ]
 })
 export class SharedModule { }

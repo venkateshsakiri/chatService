@@ -45,6 +45,21 @@ export class CustomerProductService {
   public deleteCart(id:any){
     return this.http.delete(BASE_URL+`api/customer/cart/${id}`);
   }
+
+
+  public getAllOrders(userName:any){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(BASE_URL+`api/customer/orders-response/${userName}`,{headers:headers});
+  }
+
+
+
+
+
+
+
   private handleError(error: HttpErrorResponse) {
     // Handle different error scenarios here
     if (error.error instanceof ErrorEvent) {

@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .main-container{
+    width: 90%;
+    margin: auto;
+  }
+  .imge{
+    width: 150px;
+    height: 150px;
+    padding: 10px 0px;
+  }
+  .mat-column-quantity{
+    text-align: center;
+  }
+  .mat-column-description, .mat-column-address{
+    width: 250px !important;
+  }
+  .mat-column-img{
+    width: 180px !important;
+  }
+  .mat-column-status{
+    color: green;
+    text-align: end;
+  }

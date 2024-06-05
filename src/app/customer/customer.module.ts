@@ -9,6 +9,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { CartListComponent } from './components/cart-list/cart-list.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { WhishListComponent } from './components/whish-list/whish-list.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { WhishListComponent } from './components/whish-list/whish-list.component
     ProductDetailsComponent,
     CartListComponent,
     OrdersComponent,
-    WhishListComponent
+    WhishListComponent,
+    OrderDetailsComponent
   ],
   imports: [
     CommonModule,
