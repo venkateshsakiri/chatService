@@ -42,8 +42,12 @@
     justify-content: space-between;
     align-items: center;
 }
-.favorite-icon {
+.favorite-icon-disable-color {
     color: #a2a2a2;
+    cursor: pointer;
+}
+.favorite-icon-active-color {
+    color: red;
     cursor: pointer;
 }
 .product-info {

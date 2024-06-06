@@ -14,6 +14,7 @@ export class ProductDetailsComponent implements OnInit {
   public categoryList: any;
   public selectedCategoryName: string;
   public isLoadingComplete: boolean = false;
+  public wishList:any = [];
   constructor(
     public router: Router,
     public commonService: CommonService,
@@ -28,6 +29,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.categoryList = this.commonService?.categoryList;
     this.getAllProducts();
+
   }
   public updateCategoryProducts(category: string) {
     this.router.navigate(['/customer/product-details', category]);
@@ -44,10 +46,13 @@ export class ProductDetailsComponent implements OnInit {
           this.productList = res;
           this.productList.map((ele: any) => {
             ele.imageBase64 = 'data:image/jpeg;base64,' + ele.img;
+            ele.isAddFav = false;
             return ele;
           });
           console.log(this.productList);
           this.isLoadingComplete = false;
+          this.getAllWishListBasedOnUser();
+
         },
         (err) => {
           this.isLoadingComplete = false;
@@ -75,5 +80,56 @@ export class ProductDetailsComponent implements OnInit {
         // this.snackBar.open(err?.message, 'ERROR', { duration: 5000 });
       }
     );
+  }
+
+  public goToOrders(){
+    this.router.navigate(['/customer/order-details']);
+  }
+
+  public addToFavorite(product:any,isExist:boolean,index:any){
+    if(isExist){
+      this.isLoadingComplete = true;
+      this.customerService.deleteWishList(product?.wishListId).subscribe((res:any)=>{
+        this.isLoadingComplete = false;
+      },(err)=>{
+        this.productList[index].isAddFav = false;
+        this.isLoadingComplete = false;
+      })
+      return;
+    }else{
+      this.isLoadingComplete = true;
+      this.customerService.addProductToFav(this.commonService.userInfo?.email,product?.id+'').subscribe((res:any)=>{
+        this.isLoadingComplete = false;
+        this.getAllWishListBasedOnUser();
+      },(err)=>{
+        this.getAllWishListBasedOnUser();
+        this.isLoadingComplete = false;
+      })
+    }
+
+  }
+
+  public getAllWishListBasedOnUser(){
+    this.isLoadingComplete = true;
+    this.customerService.getAllWishList(this.commonService.userInfo?.email).subscribe((res:any)=>{
+      this.isLoadingComplete = false;
+      this.wishList = res;
+      console.log(res);
+      this.checkAddFavExists();
+    },()=>{
+      this.checkAddFavExists();
+      this.isLoadingComplete = false;
+    })
+  }
+
+  public checkAddFavExists(){
+    this.wishList.forEach(ele1 => {
+      this.productList.forEach(item2 => {
+        if (Number(ele1.productId) === item2.id) {
+          item2.isAddFav = true;
+          item2.wishListId = ele1.id;
+        }
+      });
+    });
   }
 }

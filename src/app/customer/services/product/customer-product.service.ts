@@ -55,7 +55,24 @@ export class CustomerProductService {
   }
 
 
+  public addProductToFav(email:string,productId:any){
+    let reqData = {
+      'email':email,
+      'productId':productId
+    }
+    return this.http.post(BASE_URL+`api/customer/add-fav`,reqData);
+  }
 
+  public getAllWishList(userName:any){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(BASE_URL+`api/customer/wishlist/${userName}`,{headers:headers});
+  }
+
+  public deleteWishList(id:any){
+    return this.http.delete(BASE_URL+`api/customer/wishlist/${id}`);
+  }
 
 
 
