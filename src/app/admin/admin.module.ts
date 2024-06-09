@@ -19,13 +19,19 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { SharedModule } from '../shared.module';
 import { PostProductComponent } from './components/post-product/post-product.component';
 import {MatSelectModule} from '@angular/material/select';
+import { OrdersComponent } from './components/orders/orders.component';
+import { PostCouponsComponent } from './components/post-coupons/post-coupons.component';
+import { CouponsListComponent } from './components/coupons-list/coupons-list.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     AdminDashboardComponent,
     PostCategoryComponent,
-    PostProductComponent
+    PostProductComponent,
+    OrdersComponent,
+    PostCouponsComponent,
+    CouponsListComponent
   ],
   imports: [
     CommonModule,

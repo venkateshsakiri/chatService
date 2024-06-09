@@ -26,4 +26,24 @@ export class AdminService {
   getProducts(){
     return this.http.get(BASIC_URL+'api/admin/products');
   }
+
+  getAllOrders(){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(BASIC_URL+`api/admin/orders`,{headers:headers});
+  }
+
+  updateStatus(status:any,order:any){
+    let reqData = {
+      "id": order?.id,
+      "productId": order?.productId,
+      "addressId": order?.addressId,
+      "quantity": order?.quantity,
+      "price": order?.price,
+      "email": order?.email,
+      "status": status
+    }
+    return this.http.put(BASIC_URL+`api/admin/orders`,reqData);
+  }
 }

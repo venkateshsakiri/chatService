@@ -1,0 +1,69 @@
+ <div class="main-container">
+
+   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+     <!-- Position Column -->
+     <ng-container matColumnDef="position">
+       <th mat-header-cell *matHeaderCellDef> No. </th>
+       <td mat-cell *matCellDef="let element;let i = index;"> {{i + 1}} </td>
+     </ng-container>
+
+     <!--Category Name Column -->
+     <ng-container matColumnDef="categoryName">
+       <th mat-header-cell *matHeaderCellDef> Category Name </th>
+       <td mat-cell *matCellDef="let element"> {{element?.products?.categoryName}} </td>
+     </ng-container>
+
+     <!-- Product Name Column -->
+     <ng-container matColumnDef="productName">
+       <th mat-header-cell *matHeaderCellDef> Product Name </th>
+       <td mat-cell *matCellDef="let element"> {{element?.products?.name}} </td>
+     </ng-container>
+
+     <!-- User Name Column -->
+     <ng-container matColumnDef="userName">
+       <th mat-header-cell *matHeaderCellDef> User Name </th>
+       <td mat-cell *matCellDef="let element"> {{element?.user?.name}} </td>
+     </ng-container>
+
+     <!-- Address Column -->
+     <ng-container matColumnDef="address">
+       <th mat-header-cell *matHeaderCellDef> Address </th>
+       <td mat-cell *matCellDef="let element"> {{element?.address1}} </td>
+     </ng-container>
+
+     <!-- Quantity Column -->
+     <ng-container matColumnDef="quantity">
+       <th mat-header-cell *matHeaderCellDef> Quantity </th>
+       <td mat-cell *matCellDef="let element"> {{element?.quantity}} </td>
+     </ng-container>
+
+     <!-- Price Column -->
+     <ng-container matColumnDef="price">
+       <th mat-header-cell *matHeaderCellDef> Price </th>
+       <td mat-cell *matCellDef="let element"> {{element?.price? (element?.price | currency:'INR') : '0'}} </td>
+     </ng-container>
+
+     <!-- Status Column -->
+     <ng-container matColumnDef="status">
+       <th mat-header-cell *matHeaderCellDef> Status </th>
+       <td mat-cell *matCellDef="let element"> {{element?.status}} </td>
+     </ng-container>
+
+     <!-- Action Column -->
+     <ng-container matColumnDef="actions">
+       <th mat-header-cell *matHeaderCellDef> Actions </th>
+       <td mat-cell *matCellDef="let element">
+        <button [matMenuTriggerFor]="menu" mat-raised-button color="primary" [disabled]="element?.status === 'Delivered'">Actions</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="updateStatus('Ready to Shipment',element?.order)" *ngIf="((element?.status === 'Placed'))">Ready to Shipment</button>
+          <button mat-menu-item (click)="updateStatus('Delivered',element?.order)" *ngIf="element?.status === 'Ready to Shipment'">Delivered</button>
+        </mat-menu>
+    </td>
+     </ng-container>
+
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   </table>
+ </div>
+ <app-ajax-loader *ngIf="isLoading"></app-ajax-loader>

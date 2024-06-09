@@ -1,0 +1,25 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .main-container{
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+  }
+  .mat-column-address{
+    width: 200px;
+  }
+  td{
+    .mat-column-status{
+        color: #3fd703;
+      }
+  }
+  mat-row{
+    cursor: pointer;
+  }
