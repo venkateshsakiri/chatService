@@ -32,9 +32,11 @@ export class ProductDetailsComponent implements OnInit {
 
   }
   public updateCategoryProducts(category: string) {
-    this.router.navigate(['/customer/product-details', category]);
-    this.selectedCategoryName = category;
-    this.getAllProducts();
+    if(this.selectedCategoryName !== category){
+      this.router.navigate(['/customer/product-details', category]);
+      this.selectedCategoryName = category;
+      this.getAllProducts();
+    }
   }
 
   public getAllProducts() {
