@@ -46,4 +46,15 @@ export class AdminService {
     }
     return this.http.put(BASIC_URL+`api/admin/orders`,reqData);
   }
+
+  postCoupon(reqData:any){
+    return this.http.post(BASIC_URL+`api/admin/coupon`,reqData);
+  }
+
+  getAllCoupons(){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(BASIC_URL+`api/admin/coupon`,{headers:headers});
+  }
 }

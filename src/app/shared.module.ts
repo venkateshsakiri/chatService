@@ -19,7 +19,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,9 @@ import {MatMenuModule} from '@angular/material/menu';
         OverlayModule,
         MatDialogModule,
         MatTableModule,
-        MatMenuModule
+        MatMenuModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     exports: [
         AjaxLoaderComponent,
@@ -65,7 +68,9 @@ import {MatMenuModule} from '@angular/material/menu';
         OverlayModule,
         MatDialogModule,
         MatTableModule,
-        MatMenuModule
+        MatMenuModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ]
 })
 export class SharedModule { }

@@ -1,1 +1,34 @@
-<p>post-coupons works!</p>
+<div class="container2">
+  <h2>Add Coupon</h2>
+
+  <form [formGroup]="postCouponForm" (ngSubmit)="addCoupon()">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" placeholder="Name">
+      <mat-error *ngIf="postCouponForm.controls['name']?.hasError('required')">This input is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Code</mat-label>
+      <input matInput type="text" formControlName="code" placeholder="Code">
+      <mat-error *ngIf="postCouponForm.controls['code']?.hasError('required')">This input is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Discount %</mat-label>
+      <input matInput type="text" formControlName="discount" placeholder="Discount">
+      <mat-error *ngIf="postCouponForm.controls['discount']?.hasError('required')">This input is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Expiry date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="expiryDate" [min]="minExpiryDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <button color="primary" type="submit" mat-raised-button>Add Product</button>
+
+  </form>
+</div>
+<app-ajax-loader *ngIf="isLoadingComplete"></app-ajax-loader>
