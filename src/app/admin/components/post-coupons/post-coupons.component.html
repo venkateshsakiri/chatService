@@ -1,5 +1,5 @@
 <div class="container2">
-  <h2>Add Coupon</h2>
+  <h2>{{data? 'Edit Coupon' : 'Add Coupon'}}</h2>
 
   <form [formGroup]="postCouponForm" (ngSubmit)="addCoupon()">
     <mat-form-field appearance="outline" class="form-field">
@@ -27,7 +27,7 @@
     </mat-form-field>
 
 
-    <button color="primary" type="submit" mat-raised-button>Add Product</button>
+    <button color="primary" type="submit" mat-raised-button>{{data? 'Save' : 'Add Product'}}</button>
 
   </form>
 </div>

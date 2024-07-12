@@ -21,6 +21,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     declarations: [
@@ -70,7 +71,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatTableModule,
         MatMenuModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatPaginatorModule
     ]
 })
 export class SharedModule { }

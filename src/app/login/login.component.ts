@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   public hidePassword:boolean = true;
    constructor(public router:Router, public snackBar:MatSnackBar,public authService:AuthService,public commonService:CommonService) {
      this.loginForm = new FormGroup({
-       email:new FormControl('sakiri@gmail.com',[Validators.required,Validators.email]),
+       email:new FormControl('admin@gmail.com',[Validators.required,Validators.email]),
        password:new FormControl('123456',Validators.required)
      })
    }

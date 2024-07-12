@@ -7,6 +7,8 @@ const BASIC_URL = 'http://localhost:8080/';
 })
 export class AdminService {
 
+  public editCoupon:any;
+
   constructor(public http:HttpClient) { }
 
   addCategory(category:any){
@@ -47,8 +49,12 @@ export class AdminService {
     return this.http.put(BASIC_URL+`api/admin/orders`,reqData);
   }
 
-  postCoupon(reqData:any){
-    return this.http.post(BASIC_URL+`api/admin/coupon`,reqData);
+  postCoupon(reqData:any,isEdit:any){
+    if(isEdit){
+      return this.http.put(BASIC_URL+`api/admin/edit-coupon`,reqData);
+    }else{
+      return this.http.post(BASIC_URL+`api/admin/coupon`,reqData);
+    }
   }
 
   getAllCoupons(){
@@ -56,5 +62,9 @@ export class AdminService {
       'Content-Type': 'application/json'
     });
     return this.http.get(BASIC_URL+`api/admin/coupon`,{headers:headers});
+  }
+
+  deleteCoupon(id:any){
+    return this.http.delete(BASIC_URL+`api/admin/coupon/${id}`);
   }
 }
