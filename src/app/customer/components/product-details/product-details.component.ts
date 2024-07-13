@@ -73,9 +73,7 @@ export class ProductDetailsComponent implements OnInit {
       (res: any) => {
         let data = res;
         this.isLoadingComplete = false;
-        setTimeout(() => {
-          this.snackBar.open(data, 'Close', { duration: 5000 });
-        }, 2000);
+        this.snackBar.open(data?.message, 'Close', { duration: 5000 });
       },
       (err:any) => {
         this.isLoadingComplete = false;
