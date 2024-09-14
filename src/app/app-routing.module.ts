@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ChatModule } from './../../projects/chat/src/app/app.module';
 import { AuthGuardGuard } from './service/guard/auth-guard.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SchoolManagementModule } from './../../projects/school-management/src/app/app.module';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -32,11 +33,17 @@ const routes: Routes = [
     canActivate:[AuthGuardGuard],
     runGuardsAndResolvers: 'always',
     loadChildren:() => import('./../../projects/chat/src/app/app.module').then((m)=>m.ChatModule)
+  },
+  {
+    path:'school-management',
+    canActivate:[AuthGuardGuard],
+    runGuardsAndResolvers: 'always',
+    loadChildren:() => import('./../../projects/school-management/src/app/app.module').then((m)=>m.SchoolManagementModule)
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true, preloadingStrategy:PreloadAllModules}),ChatModule.forRoot()],
+  imports: [RouterModule.forRoot(routes,{useHash:true, preloadingStrategy:PreloadAllModules}),ChatModule.forRoot(),SchoolManagementModule.forRoot()],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
