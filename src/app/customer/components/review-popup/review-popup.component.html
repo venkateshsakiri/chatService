@@ -12,17 +12,20 @@
           </mat-form-field>
     </div> -->
     <div>
-          <form>
-          <mat-form-field class="example-full-width" appearance="fill">
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <!-- <div formGroupName = "userData"> -->
+          <mat-form-field class="example-full-width" appearance="fill" >
             <mat-label>Leave a comment</mat-label>
-            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+            <textarea type="text" id="username" formControlName="description" matInput placeholder="Ex. It makes me feel..."></textarea>
           </mat-form-field>
-          <input type="range" max="5" placeholder="" value="">
+          <input type="range" max="5" placeholder="" value="" formControlName="rating">
+            <!-- </div> -->
+            <div class="review-content">
+                <button  mat-raised-button color="primary" type="submit" >Submit</button>
+                <button mat-raised-button color="primary" (click)="dialog.closeAll()" type="reset">Cancel</button>
+
+            </div>
         </form>
     </div>
-    <div class="review-content">
-        <button  mat-raised-button color="primary" >Submit</button>
-        <button mat-raised-button color="primary">Cancel</button>
 
-    </div>
 </div>

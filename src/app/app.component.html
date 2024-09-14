@@ -45,7 +45,21 @@
     <button mat-button routerLink="/customer/cart" routerLinkActive="active">Cart</button>
     <button mat-button routerLink="/customer/my_orders" routerLinkActive="active">Orders</button>
     <button mat-button routerLink="/customer/wishlist" routerLinkActive="active">Wishlist</button>
-    <button mat-button (click)="profile = !profile" cdkOverlayOrigin #trigger="cdkOverlayOrigin">Profile</button>
+    <ng-container>
+      <button mat-button (click)="profile = !profile" cdkOverlayOrigin #trigger="cdkOverlayOrigin" type="button">Profile</button>
+
+<ng-template
+cdkConnectedOverlay
+[cdkConnectedOverlayOrigin]="trigger"
+[cdkConnectedOverlayOpen]="profile"
+>
+<ul class="example-list">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+</ng-template>
+    </ng-container>
     <button mat-button *ngIf="commonService?.userInfo" routerLinkActive="active"
       (click)="logOut();drawer.toggle(false)">Log Out</button>
   </mat-toolbar>
@@ -58,7 +72,22 @@
     </button>
     <span class="navbar-brand" routerLink="/dashboard">Chat</span>
     <span class="spacer"></span>
-    <button mat-button (click)="profile = !profile" cdkOverlayOrigin #trigger="cdkOverlayOrigin" routerLinkActive="active">Profile</button>
+    <ng-container>
+      <button mat-button (click)="profile = !profile" cdkOverlayOrigin #trigger="cdkOverlayOrigin" routerLinkActive="active" type="button">Profile</button>
+      <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOrigin]="trigger"
+      [cdkConnectedOverlayOpen]="profile"
+      [cdkConnectedOverlayHasBackdrop]="true"
+      (backdropClick)="profile = false"
+      >
+      <ul class="example-list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+      </ng-template>
+    </ng-container>
     <button mat-button *ngIf="commonService?.userInfo" routerLinkActive="active"
       (click)="logOut();drawer.toggle(false)">Log Out</button>
   </mat-toolbar>
@@ -93,3 +122,4 @@
 
   </div>
 </ng-template> -->
+

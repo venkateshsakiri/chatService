@@ -74,6 +74,16 @@ export class CustomerProductService {
     return this.http.delete(BASE_URL+`api/customer/wishlist/${id}`);
   }
 
+  public postReview(reqData:any){
+    return this.http.post(BASE_URL+`api/customer/add-review`,reqData);
+  }
+
+  public getProductById(id:any){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(BASE_URL+`api/admin/product/${id}`,{headers:headers});
+  }
 
 
 

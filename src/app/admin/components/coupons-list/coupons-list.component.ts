@@ -57,7 +57,6 @@ export class CouponsListComponent implements OnInit {
       this.getAllCoupons();
     },()=>{
       this.isLoadingComplete = false;
-      this.getAllCoupons();
     })
   }
 

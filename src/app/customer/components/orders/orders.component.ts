@@ -44,10 +44,11 @@ export class OrdersComponent implements OnInit {
     })
   }
 
-  public openReviewPopup(){
+  public openReviewPopup(row:any){
     let dialog = this.dialog.open(ReviewPopupComponent,{
       width:'40%',
-      height:'50%'
+      height:'50%',
+      data:{data : row}
     })
   }
 

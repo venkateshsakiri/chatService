@@ -52,7 +52,7 @@ export class PostCouponsComponent implements OnInit {
         this.isLoadingComplete = false;
         console.log(res)
         this.data? '' : this.snackBar.open(res, 'Close',{duration:5000});
-        this.snackBar.open(res, 'Close',{duration:5000})
+        this.snackBar.open('Coupon Updated successfully!', 'Close',{duration:5000})
       },(err)=>{
         // this.data? '' : this.snackBar.open(err, 'Error',{duration:5000});
         // this.snackBar.open(err, 'Error',{duration:5000})

@@ -1,1 +1,38 @@
-<p>whish-list works!</p>
+<div class="cart-main-container">
+    <div class="cart-left-panel">
+      <mat-card class="horizantal-line" *ngFor="let cart of wishList;let i = index;">
+        <div >
+          <div class="cart-list-info">
+              <span>
+                  <img [src]="cart?.imageBase64" alt="...">
+              </span>
+            <div class="cart-product-info">
+              <span class="product-description" title="{{cart?.description}}">{{cart?.description? cart?.description : '-'}}</span>
+              <span class="brand-name">Seller: {{cart?.brandName? cart?.brandName : '-'}}</span>
+              <span class="amount">{{cart?.Amount? (cart?.Amount | currency:'INR') : '0'}}</span>
+            </div>
+
+          </div>
+          <mat-card-actions>
+              <div class="action-items">
+                  <span class="remove-btn" (click)="deleteWishListItem(temp,cart)">REMOVE</span>
+              </div>
+          </mat-card-actions>
+        </div>
+
+      </mat-card>
+    </div>
+  </div>
+  <app-ajax-loader *ngIf="isLoadingComplete"></app-ajax-loader>
+  <ng-template #temp>
+      <mat-card-title class="clear-popoup-title-center-align" translate>
+          Message
+      </mat-card-title>
+      <div mat-dialog-content>
+          <div class="clear-popoup-cnt-text" translate>Are you want to delete item?</div>
+      </div>
+      <div mat-dialog-actions class="fRight">
+          <button mat-dialog-close class="clear-popoup-no-btn" translate>No</button>
+          <button mat-dialog-close class="clear-popoup-yes-btn" (click)="deleteList()" translate>Yes</button>
+      </div>
+  </ng-template>
