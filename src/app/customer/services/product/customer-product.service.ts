@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 const BASE_URL= 'http://localhost:8080/';
 @Injectable({
@@ -21,7 +22,11 @@ export class CustomerProductService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.get(BASE_URL+'api/admin/category',{headers:headers});
+    if(environment.isNodeJS){
+      return this.http.get(environment.NODE_JS+'api/admin/category');
+    }else{
+      return this.http.get(BASE_URL+'api/admin/category',{headers:headers});
+    }
   }
 
   public getAllProductsByCategoryName(category:string){
