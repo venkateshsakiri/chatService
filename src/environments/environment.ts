@@ -7,6 +7,7 @@ export const environment = {
   isChat:true,
   isNodeJS:true,
    NODE_JS:'http://localhost:8003/'
+
 };
 
 /*
