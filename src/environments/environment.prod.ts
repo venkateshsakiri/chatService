@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   isChat: true,
-  isNodeJS:false,
+  isNodeJS:true,
   NODE_JS:' https://ecom-nodejs-mxio.onrender.com'
 };
