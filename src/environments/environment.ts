@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  isChat:true
+  isChat:true,
+  isNodeJS:true,
+   NODE_JS:'http://localhost:8003/'
 };
 
 /*

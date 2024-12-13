@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { CommonService } from '../common/common.service';
 
 const BASIC_URL = 'http://localhost:8080/';
+const NODE_JS = 'http://localhost:8003/'
 @Injectable({
   providedIn: 'root',
 })
@@ -26,9 +27,14 @@ export class AuthService {
       password: req.password,
     };
     if (environment.isChat) {
-      return this.http.post(BASIC_URL + 'api/create', reqData, {
-        responseType: 'text',
-      });
+      if(environment.isNodeJS){
+        return this.http.post(environment.NODE_JS + 'api/auth/register', reqData);
+      }else{
+        return this.http.post(BASIC_URL + 'api/create', reqData, {
+          responseType: 'text',
+        });
+      }
+
     } else {
       return this.http.post(BASIC_URL + 'sign-up', req);
     }
@@ -41,9 +47,14 @@ export class AuthService {
       password: req.password,
     };
     if (environment.isChat) {
-      return this.http.post(BASIC_URL + 'api/login', reqData, {
-        responseType: 'text',
-      });
+      if(environment.isNodeJS){
+        return this.http.post(environment.NODE_JS + 'api/auth/login', reqData);
+      }else{
+        return this.http.post(BASIC_URL + 'api/login', reqData, {
+          responseType: 'text',
+        });
+      }
+
     } else {
       return this.http.post(BASIC_URL + 'sign-up', req);
     }

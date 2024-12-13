@@ -1,4 +1,5 @@
 export const environment = {
     production: false,
-    isChat:true
+    isChat:true,
+    isNodeJS:false
   };

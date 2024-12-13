@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth/auth.service';
 import { CommonService } from '../service/common/common.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,13 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe((response:any)=>{
       this.isLoader = false;
       this.snackBar.open(response, 'Close',{duration:5000});
-      let res = JSON.parse(response);
+      let res;
+      if(environment.isNodeJS){
+        res = (response);
+      }else{
+        res = JSON.parse(response);
+      }
+      // let res = JSON.parse(response);
       if(res){
         if(res?.status == 'SUCCESS'){
           this.commonService.userInfo = res?.user;

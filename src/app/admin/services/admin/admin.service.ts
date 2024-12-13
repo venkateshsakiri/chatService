@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 const BASIC_URL = 'http://localhost:8080/';
 @Injectable({
@@ -12,7 +13,11 @@ export class AdminService {
   constructor(public http:HttpClient) { }
 
   addCategory(category:any){
-    return this.http.post(BASIC_URL+'api/admin/category',category);
+    if(environment.isNodeJS){
+      return this.http.post(environment.NODE_JS+'api/admin/category',category);
+    }else{
+      return this.http.post(BASIC_URL+'api/admin/category',category);
+    }
   }
 
   getCategories(){
