@@ -25,7 +25,7 @@ export class PostCategoryComponent implements OnInit {
     if(this.categoryForm.valid){
       this.adminService.addCategory(this.categoryForm.value).subscribe((res:any)=>{
         console.log(res)
-        if(res?.id != null){
+        if((res?.id != null) || res.code == 200){
           this.snackBar.open('Category added successfully!', 'Close',{duration:5000});
           this.router.navigate(['/admin/dashboard']);
         }
